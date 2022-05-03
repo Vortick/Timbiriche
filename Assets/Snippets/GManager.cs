@@ -40,9 +40,9 @@ public class GManager : MonoBehaviour
     {
         int[] adyacentNodes = new int[4];
         int row;
-        int displacement = boardSize[0] * (boardSize[1] + 1) - 1;
+        int displacement = boardSize[0] * (boardSize[1] + 1)-1;
         Boxes = new TimbiricheBox[BoxImages.Length];
-        Debug.Log("Total Buttons " + nodeButtons.Length);
+        Debug.Log("Total Buttons " + nodeButtons.Length + " Displacement " + displacement);
 
 
         for (int i = 0; i < BoxImages.Length; i++)
@@ -51,21 +51,20 @@ public class GManager : MonoBehaviour
             Boxes[i] = new TimbiricheBox();
             adyacentNodes[0] = i ;
             adyacentNodes[1] = i + boardSize[0];
-            adyacentNodes[2] = i + row + displacement;
-            adyacentNodes[3] = i + row + displacement;
-            //adyacentNodes[3] = i + row + 2 + displacement;
-            //Debug.Log("Box " + i + ", adyacent nodes " + 
-            //    adyacentNodes[0] + "," +
-            //    adyacentNodes[1] + "," +
-            //    adyacentNodes[2] + "," +
-            //    adyacentNodes[3]);
+            adyacentNodes[2] = i + row + displacement + 1;
+            adyacentNodes[3] = i + row + 2 + displacement;
+            Debug.Log("Box " + i + ", adyacent nodes " +
+                adyacentNodes[0] + "," +
+                adyacentNodes[1] + "," +
+                adyacentNodes[2] + "," +
+                adyacentNodes[3]);
             for (int j = 0; j < 4; j++)
             {                
                 Boxes[i].linkedNodes[j] = nodeButtons[adyacentNodes[j]];
                 nodeButtons[adyacentNodes[j]].gameObject.name = ("Node " + adyacentNodes[j]);
 
                 //nodeButtons[adyacentNodes[j]].onClick.AddListener(delegate { TakeNode(adyacentNodes[j]); });
-                Debug.Log(nodeButtons[adyacentNodes[j]].name + " should subscribed with number " + adyacentNodes[j]);
+                //Debug.Log(nodeButtons[adyacentNodes[j]].name + " should subscribed with number " + adyacentNodes[j]);
             }
                 Boxes[i].subcribeButtons();
             Boxes[i].boxImage = BoxImages[i];            
