@@ -252,6 +252,7 @@ public class TimbiricheBox
     {
         isTaken = false;
         myIndex = index;
+        takenNodes = 0;
         boxImage.color = Color.white;
     }
 }
